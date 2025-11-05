@@ -304,9 +304,21 @@ const WelcomeBanner = () => {
 
   useEffect(() => {
     fetch("https://api.github.com/repos/cuga-project/cuga-agent")
-      .then((res) => res.json())
-      .then((data) => setStars(data.stargazers_count))
-      .catch(() => setStars(null));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data && typeof data.stargazers_count === 'number') {
+          setStars(data.stargazers_count);
+        }
+      })
+      .catch((error) => {
+        console.warn('Failed to fetch GitHub stars:', error);
+        setStars(null);
+      });
   }, []);
 
   useEffect(() => {
@@ -402,7 +414,7 @@ const WelcomeBanner = () => {
                 <div className="flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-lg border border-yellow-400/30 group-hover:border-yellow-400/50 transition-all duration-300">
                   <Star className="w-4 h-4 md:w-5 md:h-5 text-yellow-400 fill-yellow-400 animate-pulse" />
                   <span className="text-sm md:text-base font-bold text-yellow-400">
-                    {stars !== null ? stars.toLocaleString() : "..."}
+                    {stars !== null && typeof stars === 'number' ? stars.toLocaleString() : "..."}
                   </span>
                 </div>
 
