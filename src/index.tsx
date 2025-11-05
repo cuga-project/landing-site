@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
-import { ChevronRight, ExternalLink, Menu, X, Star, Github, Brain, Globe } from "lucide-react";
+import { ChevronRight, ExternalLink, Menu, X, Star, Github, Brain, Globe, Package } from "lucide-react";
 
 // Modern Background Animation Component
 const ModernBackground = () => {
@@ -203,12 +203,12 @@ const Header = () => {
     >
       <nav className="max-w-7xl mx-auto flex justify-between items-center px-5">
         <div className="flex items-center space-x-3 group">
-          {/* <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110">
-            <Brain className="w-7 h-7 text-white" />
-          </div> */}
-          <span className="text-white font-black text-2xl tracking-tight bg-gradient-to-r from-white to-cyan-200 bg-clip-text">
-            CUGA
-          </span>
+          <img 
+            src="https://avatars.githubusercontent.com/u/231742966?s=48&v=4" 
+            alt="CUGA Logo" 
+            className="w-10 h-10 rounded-lg shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-all duration-300 group-hover:scale-110"
+          />
+  
         </div>
 
         <button
@@ -346,7 +346,7 @@ const WelcomeBanner = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 md:pt-20">
       <ModernBackground />
 
       {/* Interactive orbs that follow mouse */}
@@ -740,6 +740,137 @@ const ResearchPapersSection = () => {
   );
 };
 
+// Sister Project Section (ALTK)
+const SisterProjectSection = () => {
+  const [elementRef, isVisible] = useScrollAnimation(0.2);
+
+  return (
+    <section className="py-16 md:py-24 px-4 md:px-5 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-gradient-to-r from-green-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse animation-delay-1000" />
+        <div className="absolute bottom-1/4 left-1/4 w-40 h-40 md:w-80 md:h-80 bg-gradient-to-r from-cyan-500/10 to-purple-600/10 rounded-full blur-3xl animate-pulse animation-delay-2000" />
+      </div>
+
+      <div ref={elementRef} className="max-w-6xl mx-auto relative z-10">
+        <div
+          className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500/20 to-cyan-500/20 border border-green-400/30 mb-6">
+            <Package className="w-5 h-5 text-green-400" />
+            <span className="text-sm font-bold text-green-400 uppercase tracking-wider">Sister Project</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 bg-clip-text bg-gradient-to-r from-green-400 to-cyan-500">
+            Agent Lifecycle Toolkit
+          </h2>
+          <p className="text-base md:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto">
+            Reusable components for building better performing agents
+          </p>
+        </div>
+
+        <div
+          className={`transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <a
+            href="https://github.com/AgentToolkit/agent-lifecycle-toolkit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block max-w-5xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900/80 to-slate-800/80 backdrop-blur-sm border border-white/10 hover:border-green-400/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-green-500/20"
+          >
+            <div className="p-8 md:p-12">
+              <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-green-400 to-cyan-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-green-500/50 transition-all duration-300 group-hover:rotate-6">
+                  <Package className="w-8 h-8 text-white" />
+                </div>
+                
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-green-400 transition-colors">
+                      Agent Lifecycle Toolkit (ALTK)
+                    </h3>
+                    <ExternalLink className="w-6 h-6 text-green-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                  
+                  <p className="text-lg text-white/80 leading-relaxed mb-6">
+                    The Agent Lifecycle Toolkit helps agent builders create better performing agents by easily integrating our components into agent pipelines. The components help improve the performance of agents by addressing key gaps in various stages of the agent lifecycle, such as in reasoning, or tool calling errors, or output guardrails.
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {[
+                      "Pre-LLM Components",
+                      "Tool Validation",
+                      "Error Recovery",
+                      "Output Guardrails",
+                      "Framework Agnostic",
+                    ].map((feature, idx) => (
+                      <span
+                        key={idx}
+                        className="px-4 py-2 rounded-full bg-gradient-to-r from-green-500/20 to-cyan-500/20 border border-green-400/30 text-sm font-semibold text-green-400"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-green-400 group-hover:gap-3 transition-all duration-300">
+                    <Github className="w-5 h-5" />
+                    <span className="text-base font-bold">View on GitHub</span>
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-5 rounded-xl bg-slate-800/50 border border-white/5">
+                  <h4 className="text-sm font-bold text-white/90 mb-2 uppercase tracking-wider">Key Benefits</h4>
+                  <ul className="space-y-2 text-sm text-white/70">
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-400 mt-1">•</span>
+                      <span>Minimal integration effort and setup</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-400 mt-1">•</span>
+                      <span>Plug-and-play components</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-green-400 mt-1">•</span>
+                      <span>Framework-agnostic design</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-5 rounded-xl bg-slate-800/50 border border-white/5">
+                  <h4 className="text-sm font-bold text-white/90 mb-2 uppercase tracking-wider">Component Types</h4>
+                  <ul className="space-y-2 text-sm text-white/70">
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 mt-1">•</span>
+                      <span>Pre-LLM: Spotlight for instruction emphasis</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 mt-1">•</span>
+                      <span>Pre-tool: Refraction, SPARC validation</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-cyan-400 mt-1">•</span>
+                      <span>Post-tool: Silent error review, RAG repair</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/5 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Enhanced Footer Component
 const Footer = () => {
   const [elementRef, isVisible] = useScrollAnimation(0.3);
@@ -758,9 +889,11 @@ const Footer = () => {
         >
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
-                <Brain className="w-7 h-7 text-white" />
-              </div>
+              <img 
+                src="https://avatars.githubusercontent.com/u/231742966?s=48&v=4" 
+                alt="CUGA Logo" 
+                className="w-12 h-12 rounded-xl shadow-lg shadow-purple-500/30"
+              />
               <h3 className="text-2xl font-black text-white bg-gradient-to-r from-white to-cyan-200 bg-clip-text">
                 CUGA
               </h3>
@@ -1042,6 +1175,7 @@ const LandingPage = () => {
         <WelcomeBanner />
         <BenchmarksSection />
         <ResearchPapersSection />
+        <SisterProjectSection />
       </main>
       <Footer />
     </div>
