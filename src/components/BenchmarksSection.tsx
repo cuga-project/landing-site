@@ -1,6 +1,5 @@
 // landing/components/BenchmarksSection.tsx
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface Benchmark {
   name: string;
@@ -57,13 +56,14 @@ const BenchmarksSection: React.FC = () => {
                 {benchmark.accuracy}
               </td>
               <td className="py-4 px-5 text-left border-b border-gray-200">
-                <Link
-                  to={`/dashboard`}
+                <a
+                  href={benchmark.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-600 hover:text-blue-800 hover:underline"
                 >
                   View Trajectories
-                </Link>
+                </a>
               </td>
             </tr>
           ))}
