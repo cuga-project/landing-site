@@ -8,6 +8,17 @@
     <meta name="theme-color" content="#0f172a" />
     <meta name="description" content="CUGA - Automate Your Work, Empower the extraordinary." />
     <title>CUGA</title>
+    
+    <script>
+      // Handle redirect from 404.html for GitHub Pages SPA routing
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script> -->
     <style>
       html, body {
