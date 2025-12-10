@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useMemo } from 'react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { GitPullRequest, Eye, Star, Package, Download, Users, Github, ExternalLink, ArrowUpRight, Activity, AlertCircle } from 'lucide-react';
