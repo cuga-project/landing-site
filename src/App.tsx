@@ -1,7 +1,6 @@
-import LandingPage from "./index";
+// @ts-nocheck
+import App from './index';
 
-function App() {
-  return <LandingPage />;
-}
+
 
 export default App;

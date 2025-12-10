@@ -1,4 +1,4 @@
-/* @ts-nocheck
+/* /* @ts-nocheck
 /* landing/styles/global.css */
 
 /* Tailwind directives - ensure you have Tailwind CSS setup */
@@ -605,4 +605,4 @@ body,
 .gpu-accelerated {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-}
+} */

@@ -1,6 +1,8 @@
 // @ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChevronRight, ExternalLink, Menu, X, Star, Github, Brain, Globe, Package } from "lucide-react";
+import Stats from "./components/Stats";
 
 // Modern Background Animation Component
 const ModernBackground = () => {
@@ -974,7 +976,19 @@ const Footer = () => {
   );
 };
 
-// Main Landing Page Component with custom styles
+// Main App Component with routing
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/stats" element={<Stats />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+// Landing Page Component
 const LandingPage = () => {
   useEffect(() => {
     document.title = "CUGA - Configurable Generalist Agent for Enterprise Automation";
@@ -1194,4 +1208,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default App;
