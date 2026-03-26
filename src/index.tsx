@@ -211,18 +211,34 @@ const Header = () => {
 };
 
 const PulseArrow = ({ from, to, shimmer }: { from: string; to: string; shimmer: string }) => (
-  <div className="flex items-center shrink-0">
-    <div className="relative w-8 h-px overflow-hidden">
-      <div className={`absolute inset-0 bg-gradient-to-r ${from} ${to}`} />
-      <div
-        className={`absolute inset-y-0 w-6 bg-gradient-to-r ${shimmer} blur-[1px]`}
-        style={{ animation: "arrowShimmer 2s ease-in-out infinite" }}
-      />
+  <>
+    {/* Horizontal arrow — desktop */}
+    <div className="hidden sm:flex items-center shrink-0">
+      <div className="relative w-8 h-px overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-r ${from} ${to}`} />
+        <div
+          className={`absolute inset-y-0 w-6 bg-gradient-to-r ${shimmer} blur-[1px]`}
+          style={{ animation: "arrowShimmer 2s ease-in-out infinite" }}
+        />
+      </div>
+      <svg width="6" height="8" viewBox="0 0 6 8" className="text-white/25 -ml-px shrink-0">
+        <path d="M0 0L6 4L0 8Z" fill="currentColor" />
+      </svg>
     </div>
-    <svg width="6" height="8" viewBox="0 0 6 8" className="text-white/25 -ml-px shrink-0">
-      <path d="M0 0L6 4L0 8Z" fill="currentColor" />
-    </svg>
-  </div>
+    {/* Vertical arrow — mobile */}
+    <div className="flex sm:hidden flex-col items-center shrink-0">
+      <div className="relative h-6 w-px overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-b ${from} ${to}`} />
+        <div
+          className={`absolute inset-x-0 h-4 bg-gradient-to-b ${shimmer} blur-[1px]`}
+          style={{ animation: "arrowShimmerV 2s ease-in-out infinite" }}
+        />
+      </div>
+      <svg width="8" height="6" viewBox="0 0 8 6" className="text-white/25 -mt-px shrink-0">
+        <path d="M0 0L4 6L8 0Z" fill="currentColor" />
+      </svg>
+    </div>
+  </>
 );
 
 const ArchDiagram = () => {
@@ -250,6 +266,12 @@ const ArchDiagram = () => {
           80%  { opacity: 1; }
           100% { left: 32px; opacity: 0; }
         }
+        @keyframes arrowShimmerV {
+          0%   { top: -16px; opacity: 0; }
+          20%  { opacity: 1; }
+          80%  { opacity: 1; }
+          100% { top: 24px; opacity: 0; }
+        }
       `}</style>
 
       <div ref={ref} className="mb-6 flex flex-col gap-2">
@@ -262,9 +284,9 @@ const ArchDiagram = () => {
           <div className="absolute -top-3 left-5 px-2.5 py-0.5 rounded-full bg-[#05080f] border border-blue-500/30 text-[10px] font-bold uppercase tracking-widest text-blue-400/80 whitespace-nowrap">
             Agent Harness
           </div>
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <div className={nodeClass("0")} style={nodeStyle(100)}>
-              <div className="px-5 py-3.5 rounded-xl border border-blue-500/40 bg-blue-500/[0.10] shadow-lg shadow-blue-500/10 shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-blue-500/40 bg-blue-500/[0.10] shadow-lg shadow-blue-500/10 text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-blue-400/70 mb-0.5">Supervisor</p>
                 <p className="text-sm font-semibold text-white whitespace-nowrap">CugaSupervisor</p>
                 <p className="text-[10px] text-white/35 mt-0.5 whitespace-nowrap">Decomposes · Routes · Delegates</p>
@@ -274,7 +296,7 @@ const ArchDiagram = () => {
             <PulseArrow from="from-blue-500/30" to="to-violet-500/20" shimmer="from-transparent via-blue-300/70 to-transparent" />
 
             <div className={nodeClass("")} style={nodeStyle(250)}>
-              <div className="px-5 py-3.5 rounded-xl border border-violet-500/35 bg-violet-500/[0.08] shadow-lg shadow-violet-500/10 shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-violet-500/35 bg-violet-500/[0.08] shadow-lg shadow-violet-500/10 text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-violet-400/70 mb-0.5">Agent</p>
                 <p className="text-sm font-semibold text-white whitespace-nowrap">CugaAgent</p>
                 <p className="text-[10px] text-white/35 mt-0.5 whitespace-nowrap">API · Web · Hybrid</p>
@@ -284,7 +306,7 @@ const ArchDiagram = () => {
             <PulseArrow from="from-violet-500/30" to="to-indigo-500/20" shimmer="from-transparent via-violet-300/70 to-transparent" />
 
             <div className={nodeClass("")} style={nodeStyle(400)}>
-              <div className="px-5 py-3.5 rounded-xl border border-indigo-500/35 bg-indigo-500/[0.07] shadow-lg shadow-indigo-500/10 shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-indigo-500/35 bg-indigo-500/[0.07] shadow-lg shadow-indigo-500/10 text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-400/70 mb-0.5">Agent</p>
                 <p className="text-sm font-semibold text-white whitespace-nowrap">CugaAgent</p>
                 <p className="text-[10px] text-white/35 mt-0.5 whitespace-nowrap">API · Web · Hybrid</p>
@@ -294,7 +316,7 @@ const ArchDiagram = () => {
             <PulseArrow from="from-indigo-500/30" to="to-white/10" shimmer="from-transparent via-indigo-300/70 to-transparent" />
 
             <div className={nodeClass("")} style={nodeStyle(550)}>
-              <div className="px-5 py-3.5 rounded-xl border border-white/[0.09] bg-white/[0.03] shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-white/[0.09] bg-white/[0.03] text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-white/30 mb-0.5">Tools</p>
                 <p className="text-sm font-semibold text-white/60 whitespace-nowrap">Your systems</p>
                 <p className="text-[10px] text-white/25 mt-0.5 whitespace-nowrap">APIs · Browsers · DBs</p>
@@ -316,9 +338,9 @@ const ArchDiagram = () => {
           <div className="absolute -top-3 left-5 px-2.5 py-0.5 rounded-full bg-[#05080f] border border-emerald-500/30 text-[10px] font-bold uppercase tracking-widest text-emerald-400/80 whitespace-nowrap">
             Policy layer
           </div>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
             <div className={nodeClass("")} style={nodeStyle(700)}>
-              <div className="px-5 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/[0.10] shadow-lg shadow-emerald-500/10 shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-emerald-500/40 bg-emerald-500/[0.10] shadow-lg shadow-emerald-500/10 text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/70 mb-0.5">Policy Agent</p>
                 <p className="text-sm font-semibold text-white whitespace-nowrap">CugaPolicy</p>
                 <p className="text-[10px] text-white/35 mt-0.5 whitespace-nowrap">Evaluates · Decides · Enforces</p>
@@ -328,7 +350,7 @@ const ArchDiagram = () => {
             <PulseArrow from="from-emerald-500/30" to="to-emerald-500/15" shimmer="from-transparent via-emerald-300/70 to-transparent" />
 
             <div className={nodeClass("")} style={nodeStyle(850)}>
-              <div className="px-5 py-3.5 rounded-xl border border-emerald-500/25 bg-emerald-500/[0.06] shrink-0">
+              <div className="w-full sm:w-auto px-5 py-3.5 rounded-xl border border-emerald-500/25 bg-emerald-500/[0.06] text-center sm:text-left">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/60 mb-0.5">Enactment</p>
                 <p className="text-sm font-semibold text-white/80 whitespace-nowrap">Trigger → Action</p>
                 <p className="text-[10px] text-white/30 mt-0.5 whitespace-nowrap">Block · Redirect · Approve</p>
