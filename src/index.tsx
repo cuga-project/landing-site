@@ -81,6 +81,7 @@ const NAV_INPAGE = [
   ["Problem", "#problem"],
   ["Solution", "#solution"],
   ["Demos", "#demos"],
+  ["Papers", "#papers"],
   ["Blogs", "#blogs"],
 ];
 
@@ -145,14 +146,6 @@ const Header = () => {
           </li>
           <li>
             <a
-              href="#papers"
-              className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-            >
-              Papers
-            </a>
-          </li>
-          <li>
-            <a
               href="https://forms.office.com/r/GjLf7a7fju"
               target="_blank"
               rel="noopener noreferrer"
@@ -195,13 +188,6 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               GitHub
-            </a>
-            <a
-              href="#papers"
-              className="py-3 text-center rounded-lg bg-white/10 text-white font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Papers
             </a>
           </div>
         </div>
@@ -398,7 +384,7 @@ const Hero = () => {
             CUGA
           </span>
           <span className="block text-[1.55rem] sm:text-2xl md:text-3xl font-medium text-white/80 leading-snug tracking-tight">
-            Governed generalist agents — <span className="text-blue-300 font-semibold">Agent Harness</span> for the enterprise.
+            Configurable Generalist Agent — <span className="text-blue-300 font-semibold">Agent Harness</span> for the enterprise.
           </span>
         </h1>
         <p className="text-base md:text-lg text-white/50 max-w-xl mx-auto leading-relaxed mb-6">
@@ -538,7 +524,7 @@ const WhyTeamsAdoptSection = () => {
         <div className={`max-w-2xl mb-12 md:mb-14 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-400/85 mb-3">Why teams adopt CUGA</p>
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-3" style={fontDisplay}>
-            Governed generalist agents — Agent Harness that drops into your stack
+            Configurable Generalist Agent — Agent Harness that drops into your stack
           </h2>
           <p className="text-lg text-white/45 leading-relaxed">
             Benchmark-backed execution, controlled tool use, multi-agent orchestration — all configurable without starting from scratch.
@@ -576,7 +562,7 @@ const WhyTeamsAdoptSection = () => {
               </div>
               <div>
                 <p className="text-lg md:text-xl font-semibold text-white leading-snug" style={fontDisplay}>
-                  Governed generalist agents — <span className="text-blue-300">Agent Harness</span> for the enterprise. Configure for your domain — no platform rebuild.
+                  Configurable Generalist Agent — <span className="text-blue-300">Agent Harness</span> for the enterprise. Configure for your domain — no platform rebuild.
                 </p>
                 <p className="text-sm text-blue-100/75 mt-2 leading-relaxed max-w-2xl">
                   Skip the scaffolding. Inherit the quality. Ship in days.
@@ -1084,7 +1070,7 @@ const Footer = () => {
       <div style={inner}>
         <div style={brand}>
           <span style={brandName}>CUGA</span>
-          <span style={brandDesc}>Governed generalist agents — Agent Harness for the enterprise.</span>
+          <span style={brandDesc}>Configurable Generalist Agent — Agent Harness for the enterprise.</span>
         </div>
         <nav style={nav}>
           {footerLinks.map(({ label, href }) =>
@@ -1107,7 +1093,7 @@ const Footer = () => {
 
 const LandingPage = () => {
   useEffect(() => {
-    document.title = "CUGA — Governed generalist agents · Agent Harness for the enterprise";
+    document.title = "CUGA — Configurable Generalist Agent · Agent Harness for the enterprise";
 
     const style = document.createElement("style");
     style.textContent = `
