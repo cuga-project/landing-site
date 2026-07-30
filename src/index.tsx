@@ -146,6 +146,16 @@ const Header = () => {
           </li>
           <li>
             <a
+              href="https://cuga-project.github.io/cuga-skills/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+            >
+              Skills
+            </a>
+          </li>
+          <li>
+            <a
               href="https://forms.office.com/r/GjLf7a7fju"
               target="_blank"
               rel="noopener noreferrer"
@@ -179,6 +189,15 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Docs
+            </a>
+            <a
+              href="https://cuga-project.github.io/cuga-skills/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 text-center rounded-lg bg-white/10 text-white font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Skills
             </a>
             <a
               href="https://github.com/cuga-project/cuga-agent"
@@ -1006,6 +1025,7 @@ const AltkSection = () => {
 
 const footerLinks = [
   { label: "Docs", href: "https://docs.cuga.dev" },
+  { label: "Skills", href: "https://cuga-project.github.io/cuga-skills/" },
   { label: "GitHub", href: "https://github.com/cuga-project/cuga-agent" },
   { label: "Papers", href: "#papers" },
   { label: "Contact", href: "https://forms.office.com/r/GjLf7a7fju" },
