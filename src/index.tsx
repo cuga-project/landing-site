@@ -1,12 +1,13 @@
 // @ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import QuizPage from "./components/QuizPage";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import {
   ArrowRight,
   ChevronRight,
   ExternalLink,
-  Menu,
-  X,
   Star,
   Github,
   Globe,
@@ -30,6 +31,7 @@ import {
   Network,
   Database,
   Terminal,
+  GraduationCap,
 } from "lucide-react";
 
 const fontDisplay = { fontFamily: '"IBM Plex Serif", Georgia, serif' };
@@ -74,145 +76,6 @@ const useScrollAnimation = (threshold = 0.12) => {
   }, [threshold]);
 
   return [elementRef, isVisible];
-};
-
-const NAV_INPAGE = [
-  ["Why CUGA", "#why-adopt"],
-  ["Problem", "#problem"],
-  ["Solution", "#solution"],
-  ["Demos", "#demos"],
-  ["Papers", "#papers"],
-  ["Blogs", "#blogs"],
-];
-
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-[padding,background,box-shadow] duration-300 ${
-        isScrolled ? "py-3 bg-[#05080f]/85 backdrop-blur-xl border-b border-white/[0.06]" : "py-5 border-b border-transparent"
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto flex items-center justify-between gap-4 px-5">
-        <a href="/" className="flex items-center gap-2.5 shrink-0 group">
-          <img
-            src="https://avatars.githubusercontent.com/u/231742966?s=48&v=4"
-            alt=""
-            className="w-9 h-9 rounded-lg ring-1 ring-white/10 group-hover:ring-blue-400/30 transition-all"
-          />
-          <span className="text-[17px] font-semibold text-white tracking-tight" style={fontDisplay}>
-            CUGA
-          </span>
-        </a>
-
-        <button
-          type="button"
-          onClick={() => setIsMobileMenuOpen((o) => !o)}
-          className="lg:hidden p-2 rounded-lg text-white/90 hover:bg-white/10"
-          aria-expanded={isMobileMenuOpen}
-          aria-label="Menu"
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
-
-        <ul className="hidden lg:flex list-none m-0 p-0 items-center gap-0.5 text-[13px] font-medium text-white/55">
-          {NAV_INPAGE.map(([label, href]) => (
-            <li key={href}>
-              <a href={href} className="px-3 py-2 rounded-md hover:text-white hover:bg-white/[0.06] transition-colors">
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <ul className="hidden md:flex list-none m-0 p-0 items-center gap-2 shrink-0">
-          <li>
-            <a
-              href="https://docs.cuga.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-            >
-              Docs
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://cuga-project.github.io/cuga-skills/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
-            >
-              Skills
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://forms.office.com/r/GjLf7a7fju"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors"
-            >
-              Contact
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-white/[0.08] bg-[#080c14] px-5 py-4 space-y-3">
-          {NAV_INPAGE.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block py-2.5 text-white/90 font-medium border-b border-white/[0.06] last:border-0"
-            >
-              {label}
-            </a>
-          ))}
-          <div className="flex flex-col gap-2 pt-2">
-            <a
-              href="https://docs.cuga.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 text-center rounded-lg bg-white/10 text-white font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Docs
-            </a>
-            <a
-              href="https://cuga-project.github.io/cuga-skills/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 text-center rounded-lg bg-white/10 text-white font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Skills
-            </a>
-            <a
-              href="https://github.com/cuga-project/cuga-agent"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 text-center rounded-lg bg-white/10 text-white font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              GitHub
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
 };
 
 const PulseArrow = ({ from, to, shimmer }: { from: string; to: string; shimmer: string }) => (
@@ -431,6 +294,13 @@ const Hero = () => {
         </a>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            to="/quiz"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-violet-600 rounded-xl hover:bg-violet-500 transition-colors shadow-lg shadow-violet-500/20"
+          >
+            <GraduationCap className="w-4 h-4" />
+            Test your CUGA knowledge
+          </Link>
           <a
             href="https://docs.cuga.dev"
             target="_blank"
@@ -784,6 +654,47 @@ const DemosSection = () => {
   );
 };
 
+const KnowledgeCheckSection = () => {
+  const [ref, visible] = useScrollAnimation(0.15);
+
+  return (
+    <section className="relative py-16 md:py-20 px-5 bg-[#05080f] border-t border-white/[0.06]">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <div
+          className={`rounded-2xl border border-blue-500/25 bg-gradient-to-br from-blue-900/25 via-[#080c14] to-violet-950/20 p-6 md:p-8 transition-all duration-700 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          <div className="flex flex-col md:flex-row md:items-center gap-6">
+            <div className="flex items-center gap-4 md:shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-400/25 flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-blue-300" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-blue-400/90 mb-1">Test yourself</p>
+                <h3 className="text-lg font-semibold text-white" style={fontDisplay}>
+                  CUGA Knowledge Check
+                </h3>
+              </div>
+            </div>
+            <p className="text-sm text-white/45 leading-relaxed flex-1 md:border-l md:border-white/[0.08] md:pl-6">
+              10 random questions on CUGA's architecture and use — a self-check for people, not agents. Score
+              80% to pass.
+            </p>
+            <Link
+              to="/quiz"
+              className="inline-flex items-center justify-center gap-2 shrink-0 px-5 py-3 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-500 transition-colors"
+            >
+              Take the quiz
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const ProofSection = () => {
   const [ref, visible] = useScrollAnimation(0.12);
 
@@ -1023,94 +934,6 @@ const AltkSection = () => {
   );
 };
 
-const footerLinks = [
-  { label: "Docs", href: "https://docs.cuga.dev" },
-  { label: "Skills", href: "https://cuga-project.github.io/cuga-skills/" },
-  { label: "GitHub", href: "https://github.com/cuga-project/cuga-agent" },
-  { label: "Papers", href: "#papers" },
-  { label: "Contact", href: "https://forms.office.com/r/GjLf7a7fju" },
-];
-
-const Footer = () => {
-  const s: React.CSSProperties = {
-    backgroundColor: "#05080f",
-    borderTop: "1px solid rgba(255,255,255,0.07)",
-    padding: "56px 20px 32px",
-    fontFamily: "IBM Plex Sans, system-ui, sans-serif",
-  };
-  const inner: React.CSSProperties = {
-    maxWidth: 1152,
-    margin: "0 auto",
-    display: "flex",
-    flexWrap: "wrap" as const,
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    gap: 32,
-  };
-  const brand: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: 4,
-  };
-  const brandName: React.CSSProperties = {
-    color: "#ffffff",
-    fontWeight: 600,
-    fontSize: 16,
-    fontFamily: '"IBM Plex Serif", Georgia, serif',
-  };
-  const brandDesc: React.CSSProperties = {
-    color: "rgba(255,255,255,0.55)",
-    fontSize: 13,
-    maxWidth: 320,
-    lineHeight: 1.6,
-  };
-  const nav: React.CSSProperties = {
-    display: "flex",
-    flexWrap: "wrap" as const,
-    gap: "12px 32px",
-    alignItems: "center",
-  };
-  const linkStyle: React.CSSProperties = {
-    color: "rgba(255,255,255,0.6)",
-    textDecoration: "none",
-    fontSize: 14,
-  };
-  const copy: React.CSSProperties = {
-    color: "rgba(255,255,255,0.35)",
-    fontSize: 12,
-    textAlign: "center" as const,
-    marginTop: 40,
-    maxWidth: 1152,
-    margin: "40px auto 0",
-    display: "block",
-  };
-
-  return (
-    <footer style={s}>
-      <div style={inner}>
-        <div style={brand}>
-          <span style={brandName}>CUGA</span>
-          <span style={brandDesc}>Configurable Generalist Agent — Agent Harness for the enterprise.</span>
-        </div>
-        <nav style={nav}>
-          {footerLinks.map(({ label, href }) =>
-            href.startsWith("#") ? (
-              <a key={label} href={href} style={linkStyle}>
-                {label}
-              </a>
-            ) : (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                {label}
-              </a>
-            )
-          )}
-        </nav>
-      </div>
-      <span style={copy}>© 2026 CUGA</span>
-    </footer>
-  );
-};
-
 const LandingPage = () => {
   useEffect(() => {
     document.title = "CUGA — Configurable Generalist Agent · Agent Harness for the enterprise";
@@ -1138,6 +961,7 @@ const LandingPage = () => {
         <ProblemSection />
         <SolutionSection />
         <DemosSection />
+        <KnowledgeCheckSection />
         <ProofSection />
         <BlogsSection />
         <AltkSection />
@@ -1151,6 +975,7 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/quiz" element={<QuizPage />} />
     </Routes>
   </BrowserRouter>
 );
