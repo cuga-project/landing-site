@@ -394,11 +394,8 @@ const QuizPage = () => {
               <div>
                 <p className="text-sm font-semibold text-white mb-2">Your result code</p>
                 <p className="text-xs text-white/40 mb-3 leading-relaxed">
-                  A personal record of this attempt, not a certification — it encodes your attempt id, your
-                  responses, and the outcome above. The verifier below checks the signature and re-grades the
-                  responses to make sure the two agree; because this is a fully static site with no backend, the
-                  signing key isn't secret, so treat this as something you keep for yourself rather than proof
-                  you'd show someone else.
+                  Encodes your attempt id, your responses, and the outcome above. The verifier below checks the
+                  signature and re-grades the responses to make sure the two agree.
                 </p>
                 <div className="rounded-xl border border-white/[0.1] bg-black/30 p-4 font-mono text-xs text-white/70 break-all">
                   {resultCode}
