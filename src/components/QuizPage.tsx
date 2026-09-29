@@ -53,9 +53,14 @@ const VerifyCodeBox = () => {
   const handleVerify = async () => {
     if (!input.trim()) return;
     setChecking(true);
-    const outcome = await verifyResultCode(input);
-    setResult(outcome);
-    setChecking(false);
+    try {
+      const outcome = await verifyResultCode(input);
+      setResult(outcome);
+    } catch {
+      setResult({ valid: false, payload: null, reason: "Malformed code." });
+    } finally {
+      setChecking(false);
+    }
   };
 
   return (
@@ -65,8 +70,8 @@ const VerifyCodeBox = () => {
         <p className="text-sm font-semibold text-white">Verify a result code</p>
       </div>
       <p className="text-xs text-white/40 mb-3 leading-relaxed">
-        Paste any result code below. We recompute its signature client-side — edit even one character and
-        verification fails.
+        Paste any result code below. We recheck its signature and re-grade the embedded responses client-side —
+        an edited byte, or a claimed score that doesn't match the responses, both fail.
       </p>
       <textarea
         value={input}
@@ -94,10 +99,10 @@ const VerifyCodeBox = () => {
         >
           <p className="font-semibold flex items-center gap-2">
             {result.valid ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
-            {result.valid ? "Signature valid — unmodified" : "Invalid"}
+            {result.valid ? "Valid — signature checks out and matches the graded responses" : "Invalid"}
           </p>
           {!result.valid && result.reason && <p className="mt-1 text-rose-200/70">{result.reason}</p>}
-          {result.payload && (
+          {result.valid && result.payload && (
             <p className="mt-2 text-xs text-white/50 font-mono break-all">
               id: {result.payload.id} · score: {result.payload.outcome.score}/{result.payload.outcome.total} (
               {result.payload.outcome.percent}%) · {result.payload.outcome.pass ? "pass" : "fail"}
@@ -208,7 +213,7 @@ const QuizPage = () => {
                     · Score {PASS_PERCENT}% or higher ({Math.ceil((PASS_PERCENT / 100) * TOTAL_QUESTIONS)}/
                     {TOTAL_QUESTIONS}) to pass.
                   </li>
-                  <li>· Results presented at the end — save the signed result code to prove your learning.</li>
+                  <li>· Results presented at the end, with a result code you can save as your own record of the attempt.</li>
                 </ul>
 
                 <p className="text-sm font-semibold text-white mt-5 mb-2">Sources</p>
@@ -390,8 +395,11 @@ const QuizPage = () => {
               <div>
                 <p className="text-sm font-semibold text-white mb-2">Your result code</p>
                 <p className="text-xs text-white/40 mb-3 leading-relaxed">
-                  Encodes your attempt id, your responses, and the outcome above. Signed so any edit to the
-                  responses or score invalidates it — see the verifier below.
+                  A personal record of this attempt, not a certification — it encodes your attempt id, your
+                  responses, and the outcome above. The verifier below checks the signature and re-grades the
+                  responses to make sure the two agree; because this is a fully static site with no backend, the
+                  signing key isn't secret, so treat this as something you keep for yourself rather than proof
+                  you'd show someone else.
                 </p>
                 <div className="rounded-xl border border-white/[0.1] bg-black/30 p-4 font-mono text-xs text-white/70 break-all">
                   {resultCode}

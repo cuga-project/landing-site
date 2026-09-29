@@ -42,26 +42,101 @@ export async function buildResultCode(payload: QuizAttemptPayload): Promise<stri
   return `${CODE_PREFIX}.${payloadB64}.${signature}`;
 }
 
+function isQuizResponse(value: unknown): value is QuizResponse {
+  return (
+    !!value &&
+    typeof value === "object" &&
+    typeof (value as QuizResponse).questionId === "string" &&
+    typeof (value as QuizResponse).optionId === "string"
+  );
+}
+
+function isQuizOutcome(value: unknown): value is QuizOutcome {
+  if (!value || typeof value !== "object") return false;
+  const o = value as QuizOutcome;
+  return (
+    typeof o.score === "number" &&
+    typeof o.total === "number" &&
+    typeof o.percent === "number" &&
+    typeof o.pass === "boolean"
+  );
+}
+
+function isQuizAttemptPayload(value: unknown): value is QuizAttemptPayload {
+  if (!value || typeof value !== "object") return false;
+  const p = value as QuizAttemptPayload;
+  return (
+    p.v === 1 &&
+    typeof p.id === "string" &&
+    typeof p.ts === "number" &&
+    Array.isArray(p.responses) &&
+    p.responses.every(isQuizResponse) &&
+    isQuizOutcome(p.outcome)
+  );
+}
+
+// Checks the signature AND re-grades the embedded responses, so a payload
+// that merely carries a valid signature but claims a score its responses
+// don't actually earn (e.g. zero responses claiming 10/10) is rejected —
+// not just one whose bytes were edited after signing.
 export async function verifyResultCode(
   code: string
 ): Promise<{ valid: boolean; payload: QuizAttemptPayload | null; reason?: string }> {
-  const trimmed = code.trim();
-  const parts = trimmed.split(".");
-  if (parts.length !== 3 || parts[0] !== CODE_PREFIX) {
-    return { valid: false, payload: null, reason: "Not a recognized quiz result code." };
-  }
-  const [, payloadB64, signature] = parts;
-
-  let payload: QuizAttemptPayload;
   try {
-    payload = JSON.parse(base64UrlDecode(payloadB64));
-  } catch {
-    return { valid: false, payload: null, reason: "Payload could not be decoded." };
-  }
+    const trimmed = code.trim();
+    const parts = trimmed.split(".");
+    if (parts.length !== 3 || parts[0] !== CODE_PREFIX) {
+      return { valid: false, payload: null, reason: "Not a recognized quiz result code." };
+    }
+    const [, payloadB64, signature] = parts;
 
-  const signatureValid = await hmacVerify(payloadB64, signature);
-  if (!signatureValid) {
-    return { valid: false, payload, reason: "Signature does not match — this code was edited or corrupted." };
+    let decoded: unknown;
+    try {
+      decoded = JSON.parse(base64UrlDecode(payloadB64));
+    } catch {
+      return { valid: false, payload: null, reason: "Payload could not be decoded." };
+    }
+
+    if (!isQuizAttemptPayload(decoded)) {
+      return { valid: false, payload: null, reason: "Payload doesn't match the expected result-code structure." };
+    }
+    const payload = decoded;
+
+    let signatureValid: boolean;
+    try {
+      signatureValid = await hmacVerify(payloadB64, signature);
+    } catch {
+      return { valid: false, payload: null, reason: "Signature could not be read." };
+    }
+    if (!signatureValid) {
+      return { valid: false, payload: null, reason: "Signature does not match — this code was edited or corrupted." };
+    }
+
+    if (payload.responses.length !== TOTAL_QUESTIONS) {
+      return {
+        valid: false,
+        payload: null,
+        reason: `Expected ${TOTAL_QUESTIONS} responses, found ${payload.responses.length} — inconsistent code.`,
+      };
+    }
+
+    const recomputed = await gradeResponses(payload.responses);
+    const outcomeMatches =
+      recomputed.score === payload.outcome.score &&
+      recomputed.total === payload.outcome.total &&
+      recomputed.percent === payload.outcome.percent &&
+      recomputed.pass === payload.outcome.pass;
+
+    if (!outcomeMatches) {
+      return {
+        valid: false,
+        payload: null,
+        reason: "Signed, but the outcome doesn't match what these responses actually grade to.",
+      };
+    }
+
+    return { valid: true, payload };
+  } catch {
+    return { valid: false, payload: null, reason: "Malformed code." };
   }
-  return { valid: true, payload };
 }

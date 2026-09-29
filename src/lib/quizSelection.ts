@@ -17,11 +17,20 @@ function pickByDifficulty(pool: QuizQuestion[], difficulty: QuizDifficulty, coun
   return cryptoShuffle(candidates).slice(0, count);
 }
 
+// Reorders a question's options for display only — option `id`s (and the
+// hashes keyed by them in quizAnswerKey) are untouched, so grading is
+// unaffected. Without this, a skewed correct-answer distribution across the
+// pool (e.g. "b" far more often than the others) turns into a shortcut: pick
+// the same letter every time and pass well above chance.
+function shuffleOptionOrder(question: QuizQuestion): QuizQuestion {
+  return { ...question, options: cryptoShuffle(question.options) };
+}
+
 export function selectQuizQuestions(pool: QuizQuestion[]): QuizQuestion[] {
   const selected = [
     ...pickByDifficulty(pool, "easy", EASY_COUNT),
     ...pickByDifficulty(pool, "medium", MEDIUM_COUNT),
     ...pickByDifficulty(pool, "hard", HARD_COUNT),
   ];
-  return cryptoShuffle(selected);
+  return cryptoShuffle(selected).map(shuffleOptionOrder);
 }
