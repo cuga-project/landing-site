@@ -200,8 +200,7 @@ const QuizPage = () => {
                 </h1>
                 <p className="text-white/50 leading-relaxed">
                   A quick self-assessment for people learning about CUGA — the agent harness, its architecture,
-                  and how it's used. This isn't a certification or a graded test that goes anywhere; it's just a
-                  way to check what you actually know.
+                  and how it's used.
                 </p>
               </div>
 
