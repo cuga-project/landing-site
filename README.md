@@ -78,3 +78,15 @@ cuga-landing-site/
 
 
 
+
+## Publishing the installer
+
+The installation panel and `public/install.sh` target **cuga 0.4.1**. Deploy after the approved wheel and tagged installer are available.
+
+1. Copy `scripts/install.sh` from the approved cuga-agent tag into both `public/install.sh` and `public/install/v0.4.1.sh`.
+2. Update `public/install/manifest.json` with the release, source URL, and SHA-256 of the exact script. Keep the setup guide link on the same release.
+3. Run `node scripts/check-installer.mjs` and `pnpm run build` locally.
+4. Run `node scripts/check-installer.mjs --release` after publication. The deploy workflow uses this check to block the installation command until the PyPI wheel and matching source are available.
+5. Deploy through the existing GitHub Pages workflow. Its final check verifies that `https://cuga.dev/install.sh` returns the approved script bytes. To repeat it, run `node scripts/check-installer.mjs --deployed`.
+
+The versioned URL is `https://cuga.dev/install/v0.4.1.sh`. The command uses the stable `install.sh` URL so future upgrades can select a newly approved release.
