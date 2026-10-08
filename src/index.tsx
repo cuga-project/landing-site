@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import QuizPage from "./components/QuizPage";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { InstallPanel } from "./components/InstallPanel";
 import {
   ArrowRight,
   ChevronRight,
@@ -274,6 +275,7 @@ const Hero = () => {
         </p>
       </div>
 
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-5"><InstallPanel /></div>
       <div className="relative z-10 w-full max-w-5xl mx-auto px-5">
         <ArchDiagram />
       </div>
