@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import QuizPage from "./components/QuizPage";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { CugaProjects } from "./components/CugaProjects";
 import {
   ArrowRight,
   ChevronRight,
@@ -318,6 +319,7 @@ const Hero = () => {
           </a>
         </div>
       </div>
+      <CugaProjects />
     </section>
   );
 };
