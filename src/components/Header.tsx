@@ -5,12 +5,11 @@ import { ArrowRight, Menu, X } from "lucide-react";
 const fontDisplay = { fontFamily: '"IBM Plex Serif", Georgia, serif' };
 
 const NAV_INPAGE = [
-  ["Why CUGA", "/#why-adopt"],
-  ["Problem", "/#problem"],
-  ["Solution", "/#solution"],
-  ["Demos", "/#demos"],
+  ["Platform", "/#platform"],
+  ["Control", "/#control"],
+  ["Deploy", "/#deploy"],
+  ["Ecosystem", "/#ecosystem"],
   ["Papers", "/#papers"],
-  ["Blogs", "/#blogs"],
 ];
 
 export const Header = () => {

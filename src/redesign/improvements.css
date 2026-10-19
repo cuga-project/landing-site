@@ -1,0 +1,479 @@
+/* Readable product media and full-resolution inspection. */
+.ns-site .ns-screenshot-trigger {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: left;
+  cursor: zoom-in;
+}
+.ns-screenshot-trigger img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.ns-screenshot-trigger > span {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border-radius: 5px;
+  background: #0b1839;
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 2px 8px #0003;
+}
+.ns-image-dialog {
+  width: min(1500px, 96vw);
+  max-width: none;
+  max-height: 94dvh;
+  padding: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #f4f7fc;
+  color: #13223d;
+}
+.ns-image-dialog::backdrop {
+  background: #07122bdd;
+}
+.ns-media-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  font-size: 13px;
+}
+.ns-media-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.ns-site .ns-media-toolbar button,
+.ns-media-toolbar a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+}
+.ns-image-scroll {
+  overflow: auto;
+  max-height: calc(94dvh - 80px);
+}
+.ns-image-scroll img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+.ns-image-full img {
+  width: auto;
+}
+
+/* A single, concrete decision replaces the duplicated product gallery. */
+.ns-workflow-section {
+  background: #fff;
+}
+.ns-workflow-demo {
+  border: 1px solid #d3ddec;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 50px #163a7010;
+}
+.ns-workflow-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 28px;
+  border-bottom: 1px solid #dce4f0;
+  font-size: 12px;
+  color: #51627d;
+}
+.ns-workflow-caption > span:first-child {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 1px;
+  color: #0f62fe;
+}
+.ns-workflow-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 26px 28px;
+  margin: 0;
+  border-bottom: 1px solid #dce4f0;
+  gap: 14px;
+}
+.ns-workflow-steps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5d6d85;
+  font-size: 14px;
+}
+.ns-workflow-steps li > span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border: 1px solid #cbd7e9;
+  border-radius: 50%;
+  font-size: 11px;
+}
+.ns-workflow-steps [aria-current="step"] {
+  color: #0f62fe;
+  font-weight: 600;
+}
+.ns-workflow-steps [aria-current="step"] > span {
+  background: #0f62fe;
+  border-color: #0f62fe;
+  color: #fff;
+}
+.ns-workflow-steps .is-complete > span {
+  background: #e8f1ff;
+  border-color: #c0d6ff;
+  color: #0f62fe;
+}
+.ns-workflow-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ns-workflow-context {
+  padding: 34px;
+  border-right: 1px solid #dce4f0;
+  background: #f8faff;
+  display: grid;
+  gap: 30px;
+}
+.ns-workflow-context svg,
+.ns-workflow-decision > svg {
+  color: #0f62fe;
+}
+.ns-workflow-context h3 {
+  font-size: 18px;
+  margin: 10px 0 8px;
+}
+.ns-workflow-context p,
+.ns-workflow-decision p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #52637c;
+}
+.ns-workflow-context code {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  margin-top: 15px;
+  color: #244a84;
+}
+.ns-workflow-decision {
+  min-height: 330px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+.ns-workflow-decision h3 {
+  font-size: 27px;
+  letter-spacing: -0.7px;
+  line-height: 1.2;
+}
+.ns-workflow-decision > div > p {
+  margin: 16px 0 24px;
+}
+.ns-workflow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+.ns-site .ns-workflow-deny {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #c4cfe0;
+  border-radius: 5px;
+  padding: 12px 18px;
+  font-size: 13px;
+  min-height: 44px;
+}
+.ns-workflow-status {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #0f62fe;
+  display: block;
+  margin-bottom: 8px;
+}
+.ns-site .ns-workflow-disclosure {
+  padding: 15px 28px;
+  font-size: 12px;
+  color: #52637c;
+  border-top: 1px solid #dce4f0;
+}
+
+/* Keep explanatory text readable at every viewport. */
+.ns-blue .bs-preview-tabs button {
+  font-size: 12px;
+  min-height: 44px;
+}
+.ns-blue .bs-preview-meta,
+.ns-blue .bs-preview-topbar code,
+.ns-blue .bs-preview-topbar > span:last-child {
+  font-size: 10px;
+}
+.ns-blue .bs-preview-topbar {
+  min-height: 34px;
+}
+.ns-blue .bs-preview-detail h2 {
+  font-size: 16px;
+}
+.ns-blue .bs-preview-detail p {
+  font-size: 14px;
+}
+.ns-blue .bs-preview-foot {
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 8px;
+}
+.ns-blue .bs-preview-foot > span:last-child {
+  font-size: 10px;
+}
+.ns-blue .bs-product-note,
+.ns-blue .bs-product-note > span:last-child {
+  font-size: 11px;
+}
+.ns-blue .bs-hero-copy > p {
+  font-size: 16px;
+}
+.ns-blue .bs-hero-credits,
+.ns-blue .bs-value-strip > div > div > span {
+  font-size: 12px;
+}
+.ns-site .ns-heading-aside,
+.ns-site .ns-product-detail p {
+  font-size: 15px;
+}
+.ns-site .ns-media-note,
+.ns-site .ns-code-note {
+  font-size: 12px;
+}
+.ns-site .ns-code-panel pre {
+  font-size: 13px;
+  line-height: 1.85;
+}
+.ns-site .ns-code-tabs [role="tab"] {
+  font-size: 12px;
+  min-height: 44px;
+}
+.ns-site .ns-eyebrow {
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .ns-workflow-content {
+    grid-template-columns: 1fr;
+  }
+  .ns-workflow-context {
+    border-right: 0;
+    border-bottom: 1px solid #dce4f0;
+    padding: 24px;
+  }
+  .ns-workflow-decision {
+    padding: 28px 24px;
+    min-height: 300px;
+  }
+  .ns-workflow-caption {
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 22px;
+  }
+  .ns-workflow-steps {
+    grid-template-columns: 1fr 1fr;
+    padding: 22px;
+    gap: 20px 12px;
+  }
+  .ns-workflow-steps li {
+    font-size: 13px;
+  }
+  .ns-site .ns-workflow-disclosure {
+    padding: 16px 22px;
+  }
+  .ns-blue .bs-preview-tabs button > span {
+    display: none;
+  }
+  .ns-blue .bs-preview-meta {
+    flex-wrap: wrap;
+  }
+  .ns-blue .bs-product-note {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ns-blue .bs-preview-detail > div {
+    grid-template-columns: 1fr;
+  }
+  .ns-blue .bs-preview-mini-icon {
+    display: none;
+  }
+  .ns-blue .bs-preview-detail > a {
+    min-width: 32px;
+    min-height: 44px;
+  }
+  .ns-media-toolbar {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 10px 14px;
+  }
+  .ns-media-toolbar > div {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .ns-image-scroll {
+    max-height: calc(94dvh - 115px);
+  }
+}
+
+.ns-site button.bs-button {
+  background: #0f62fe;
+  padding: 15px 20px;
+  font-size: 13px;
+  min-height: 46px;
+}
+.ns-site button.bs-button:hover {
+  background: #0043ce;
+}
+.ns-image-dialog {
+  margin: auto;
+}
+.ns-site .ns-policy-copy p,
+.ns-site .ns-capability p:last-child,
+.ns-site .ns-deploy-options p,
+.ns-site .ns-build-description,
+.ns-site .ns-ecosystem-card-copy > p {
+  font-size: 14px;
+}
+.ns-site .ns-policy-footnote,
+.ns-site .ns-deploy-note p,
+.ns-site .ns-benchmark-bottom,
+.ns-site .ns-benchmark-model,
+.ns-site .ns-deploy-tags span,
+.ns-site .ns-community-row,
+.ns-site .ns-tour-dialog p,
+.ns-site .ns-build-requirements {
+  font-size: 12px;
+}
+.ns-site .ns-benchmark-table thead th {
+  font-size: 11px;
+}
+.ns-site .ns-research-links a {
+  font-size: 13px;
+}
+.ns-site .ns-webarena .ns-text-link {
+  font-size: 12px !important;
+}
+.ns-blue .bs-hero-eyebrow,
+.ns-blue .bs-product-caption {
+  font-size: 10px;
+}
+.ns-blue .bs-footer-bottom,
+.ns-site .ns-footer-bottom {
+  font-size: 11px;
+}
+
+/* A visible invitation to support CUGA, with the current public star count. */
+.ns-blue .bs-star-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  border: 1px solid #b8cefa;
+  border-radius: 6px;
+  padding: 10px 16px;
+  background: #edf3ff;
+  color: #124aaf;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.ns-blue .bs-star-link:hover {
+  background: #e0ebff;
+  border-color: #0f62fe;
+}
+.bs-star-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding-left: 12px;
+  border-left: 1px solid #b8cefa;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.bs-star-count svg {
+  color: #9a6600;
+}
+.bs-hero-star {
+  margin-top: 24px;
+}
+.bs-nav-star {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.ns-blue .bs-star-compact {
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 12px;
+  font-size: 12px;
+  background: #fff;
+}
+.bs-star-compact .bs-star-count {
+  padding-left: 8px;
+  gap: 5px;
+}
+.ns-blue .bs-nav-actions {
+  margin-left: 0;
+}
+@media (max-width: 1100px) and (min-width: 901px) {
+  .ns-blue .bs-nav {
+    gap: 20px;
+  }
+  .ns-blue .bs-desktop-nav {
+    gap: 18px;
+  }
+  .bs-star-compact .bs-star-label {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .ns-blue .bs-nav {
+    gap: 15px;
+  }
+  .ns-blue .bs-menu {
+    margin-left: 0;
+  }
+  .ns-blue .bs-star-compact {
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+  .bs-star-compact .bs-star-label {
+    display: none;
+  }
+  .ns-blue .bs-star-compact > svg {
+    display: none;
+  }
+  .bs-star-compact .bs-star-count {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .bs-hero-star {
+    margin-top: 24px;
+  }
+}

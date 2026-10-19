@@ -69,11 +69,11 @@ export const Footer = () => {
       <div style={inner}>
         <div style={brand}>
           <span style={brandName}>CUGA</span>
-          <span style={brandDesc}>Configurable Generalist Agent — Agent Harness for the enterprise.</span>
+          <span style={brandDesc}>The enterprise agent harness for sovereign, policy-controlled automation.</span>
         </div>
         <nav style={nav}>
           {footerLinks.map(({ label, href }) =>
-            href.startsWith("#") ? (
+            href.includes("#") ? (
               <a key={label} href={href} style={linkStyle}>
                 {label}
               </a>
