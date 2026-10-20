@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import {
-  ArrowDown,
   ArrowUpRight,
   CheckCheck,
   Code2,
@@ -91,9 +90,9 @@ function BlueHeader({ stars }: { stars: number }) {
             <GitHubStars stars={stars} compact />
           </div>
           <div className="bs-nav-actions">
-            <a href="#build" className="bs-button bs-button-small">
-              Start building <ArrowUpRight size={15} />
-            </a>
+            <External href={DOCS} className="bs-button bs-button-small">
+              Get started <ArrowUpRight size={15} />
+            </External>
           </div>
           <button
             className="bs-menu"
@@ -117,10 +116,10 @@ function BlueHeader({ stars }: { stars: number }) {
                 <ArrowUpRight size={17} />
               </a>
             ))}
-            <a href="#build" onClick={() => setMenuOpen(false)}>
-              Start building
+            <External href={DOCS}>
+              Get started
               <ArrowUpRight size={17} />
-            </a>
+            </External>
             <External href={REPO}>
               GitHub
               <ArrowUpRight size={17} />
@@ -266,6 +265,31 @@ function BlueHero({ stars }: { stars: number }) {
   return (
     <section className="bs-hero">
       <div className="bs-hero-grid-bg" aria-hidden="true" />
+      <nav className="bs-quick-actions" aria-label="Start with CUGA">
+        <div className="ns-container">
+          <p>Start with CUGA</p>
+          <div className="bs-quick-action-buttons">
+            <External
+              href={DOCS}
+              className="bs-action-button bs-action-primary"
+            >
+              Get started <ArrowUpRight size={18} />
+            </External>
+            <External
+              href="https://github.com/cuga-project/cuga-apps"
+              className="bs-action-button"
+            >
+              Explore CUGA Apps <ArrowUpRight size={18} />
+            </External>
+            <External
+              href="https://github.com/cuga-project/cuga-harness-kit"
+              className="bs-action-button"
+            >
+              Get Harness Kit <ArrowUpRight size={18} />
+            </External>
+          </div>
+        </div>
+      </nav>
       <div className="ns-container bs-hero-grid">
         <div className="bs-hero-copy">
           <div className="bs-hero-eyebrow">
@@ -288,14 +312,6 @@ function BlueHero({ stars }: { stars: number }) {
             APIs, and documents with an agent harness built to run on your
             infrastructure.
           </p>
-          <div className="bs-hero-actions">
-            <a href="#build" className="bs-button">
-              Build with CUGA <ArrowUpRight size={18} />
-            </a>
-            <a href="#platform" className="bs-secondary-link">
-              See the platform <ArrowDown size={15} />
-            </a>
-          </div>
           <div className="bs-hero-star">
             <GitHubStars stars={stars} />
           </div>
