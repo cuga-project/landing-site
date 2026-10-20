@@ -27,6 +27,7 @@ import "./blue.css";
 import "./improvements.css";
 import { Screenshot } from "./ProductMedia";
 import WorkflowSection from "./WorkflowSection";
+import AppsSection from "./AppsSection";
 import { GitHubStars, useGitHubStars } from "./GitHubStars";
 
 const REPO = "https://github.com/cuga-project/cuga-agent";
@@ -90,9 +91,9 @@ function BlueHeader({ stars }: { stars: number }) {
             <GitHubStars stars={stars} compact />
           </div>
           <div className="bs-nav-actions">
-            <External href={DOCS} className="bs-button bs-button-small">
-              Get started <ArrowUpRight size={15} />
-            </External>
+            <a href="#apps" className="bs-button bs-button-small">
+              Try CUGA Apps <ArrowUpRight size={15} />
+            </a>
           </div>
           <button
             className="bs-menu"
@@ -116,9 +117,11 @@ function BlueHeader({ stars }: { stars: number }) {
                 <ArrowUpRight size={17} />
               </a>
             ))}
+            <a href="#apps" onClick={() => setMenuOpen(false)}>
+              Try CUGA Apps <ArrowUpRight size={17} />
+            </a>
             <External href={DOCS}>
-              Get started
-              <ArrowUpRight size={17} />
+              Get started <ArrowUpRight size={17} />
             </External>
             <External href={REPO}>
               GitHub
@@ -269,17 +272,11 @@ function BlueHero({ stars }: { stars: number }) {
         <div className="ns-container">
           <p>Start with CUGA</p>
           <div className="bs-quick-action-buttons">
-            <External
-              href={DOCS}
-              className="bs-action-button bs-action-primary"
-            >
+            <a href="#apps" className="bs-action-button bs-action-primary">
+              Try CUGA Apps <ArrowUpRight size={18} />
+            </a>
+            <External href={DOCS} className="bs-action-button">
               Get started <ArrowUpRight size={18} />
-            </External>
-            <External
-              href="https://github.com/cuga-project/cuga-apps"
-              className="bs-action-button"
-            >
-              Explore CUGA Apps <ArrowUpRight size={18} />
             </External>
             <External
               href="https://github.com/cuga-project/cuga-harness-kit"
@@ -475,6 +472,7 @@ export default function BlueLandingPage() {
       <BlueHeader stars={stars} />
       <main id="main">
         <BlueHero stars={stars} />
+        <AppsSection />
         <IntegrationStrip />
         <WorkflowSection />
         <PoliciesSection />

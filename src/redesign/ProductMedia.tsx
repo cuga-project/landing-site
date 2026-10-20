@@ -87,6 +87,7 @@ export function ProductTour() {
     <>
       <button
         className="ns-text-link"
+        data-analytics-event="product_tour_open"
         onClick={() => dialog.current?.showModal()}
       >
         <Play size={16} /> Watch the product tour <ArrowUpRight size={16} />

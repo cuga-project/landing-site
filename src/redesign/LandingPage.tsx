@@ -427,6 +427,7 @@ function ProductSection() {
             </p>
             <button
               className="ns-text-link"
+              data-analytics-event="product_tour_open"
               onClick={() => dialogRef.current?.showModal()}
             >
               <span className="ns-play-icon">

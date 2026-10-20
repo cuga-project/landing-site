@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import QuizPage from "./components/QuizPage";
+import AnalyticsPreferences from "./components/AnalyticsPreferences";
 import LandingPage from "./redesign/LandingPage";
 import BlueLandingPage from "./redesign/BlueLandingPage";
 
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/concept-1" element={<LandingPage />} />
         <Route path="/quiz" element={<QuizPage />} />
       </Routes>
+      <AnalyticsPreferences />
     </BrowserRouter>
   );
 }

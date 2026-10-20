@@ -1,0 +1,99 @@
+.ga-preferences {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  color: #17243b;
+}
+.ga-preferences *,
+.ga-preferences *::before,
+.ga-preferences *::after {
+  box-sizing: border-box;
+}
+.ga-settings {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 45;
+  min-height: 40px;
+  border: 1px solid #bbc9dc;
+  border-radius: 6px;
+  padding: 9px 13px;
+  background: #fff;
+  color: #344965;
+  font:
+    500 12px "IBM Plex Sans",
+    sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 10px #17315712;
+}
+.ga-panel {
+  position: fixed;
+  bottom: 68px;
+  left: 16px;
+  z-index: 46;
+  width: min(390px, calc(100vw - 32px));
+  max-height: calc(100dvh - 90px);
+  overflow: auto;
+  padding: 22px;
+  border: 1px solid #b9cbe5;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 40px #12294c26;
+}
+.ga-panel h2 {
+  margin: 0 0 12px;
+  color: #17243b;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ga-panel p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #52637c;
+}
+.ga-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 18px 0 14px;
+}
+.ga-actions button {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #0f62fe;
+  border-radius: 5px;
+  background: #fff;
+  color: #0f52d2;
+  font:
+    600 13px "IBM Plex Sans",
+    sans-serif;
+  cursor: pointer;
+}
+.ga-actions .ga-allow {
+  background: #0f62fe;
+  color: #fff;
+}
+.ga-actions button:hover {
+  background: #e8efff;
+}
+.ga-actions .ga-allow:hover {
+  background: #0043ce;
+}
+.ga-panel > a {
+  color: #0f52d2;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ga-preferences :focus-visible {
+  outline: 2px solid #0f62fe;
+  outline-offset: 3px;
+}
+@media (max-width: 400px) {
+  .ga-panel {
+    padding: 18px;
+  }
+  .ga-panel p {
+    font-size: 13px;
+  }
+}
