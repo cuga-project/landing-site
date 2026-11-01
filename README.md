@@ -115,3 +115,18 @@ Run consent, environment, and event-payload tests with:
 ```bash
 node --test scripts/test-analytics.mjs
 ```
+
+## Product media
+
+Product previews use direct captures of CUGA's current interface with illustrative Revenue Operations data from `cuga-agent/docs/readme/media-fixture.json`.
+
+The product walkthrough is a direct browser recording. It shows agent search, configuration, connected tools, approval policies, chat, knowledge, memory, and Events Studio. No model call or business operation was executed.
+
+| Asset | Purpose |
+| --- | --- |
+| `public/images/{manager,policies,events,memory}.jpg` | Direct product screenshots, shared with the agent README. |
+| `public/videos/product-tour.mp4` | Silent H.264 screen recording of the actual interface. |
+| `public/videos/product-tour.vtt` | English descriptions of the recorded actions. |
+| `public/videos/product-tour.txt` | Text equivalent of the walkthrough. |
+
+Both `/` and `/concept-1` use the same player and a direct product screenshot as the poster. Playback requires a user action; closing the dialog pauses playback and restores focus to its launcher. Verify both routes at desktop and mobile sizes when replacing media.
