@@ -115,3 +115,19 @@ Run consent, environment, and event-payload tests with:
 ```bash
 node --test scripts/test-analytics.mjs
 ```
+
+## Product media
+
+The product previews show CUGA's IBM Carbon workspace, captured from cuga-agent main at `3991f5a22` on November 1, 2026. Screens use the illustrative Revenue Operations fixture from `cuga-agent/docs/readme/media-fixture.json`; no inference or business operation was executed.
+
+The **Carbon experience tour** reuses the 44-second narrated demo prepared for the Carbon UI refresh. It covers the dashboard, configuration, chat, knowledge, memory, Events Studio, loading states, and mobile layouts. It uses sample data, Kokoro synthesized narration, an English WebVTT caption track, and a text transcript. It does not show a live agent run.
+
+| Asset | Purpose |
+| --- | --- |
+| `public/images/{manager,policies,events,memory}.jpg` | Current Carbon product captures, shared with the agent README. |
+| `public/videos/carbon-tour.mp4` | H.264/AAC narrated tour, loaded only when requested. |
+| `public/videos/carbon-tour-poster.png` | Static poster before playback. |
+| `public/videos/carbon-tour.vtt` | Default English captions. |
+| `public/videos/carbon-tour-transcript.txt` | Accessible plain-text narration. |
+
+Both `/` and `/concept-1` use the same captioned player. Playback requires an explicit user action; closing the dialog pauses playback. Verify both routes at desktop and mobile sizes when replacing media. Keep the caption track, transcript, and poster aligned with the MP4.
