@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 import {
   ArrowUpRight,
   Maximize2,
@@ -39,7 +40,7 @@ export function Screenshot({
         }}
         aria-label={`Enlarge screenshot: ${alt}`}
       >
-        <img src={src} alt={alt} width={1440} height={830} loading={loading} />
+        <img src={src} alt={alt} width={2880} height={src.endsWith("/events.jpg") ? 2560 : 2000} loading={loading} />
         <span>
           <Maximize2 size={14} /> Enlarge screenshot
         </span>
@@ -80,6 +81,29 @@ export function Screenshot({
   );
 }
 
+export function CarbonTourVideo({ videoRef }: { videoRef: RefObject<HTMLVideoElement | null> }) {
+  return (
+    <>
+      <video
+        ref={videoRef}
+        aria-label="CUGA IBM Carbon experience tour"
+        controls
+        preload="none"
+        playsInline
+        poster="/videos/carbon-tour-poster.png"
+        src="/videos/carbon-tour.mp4"
+      >
+        <track kind="captions" src="/videos/carbon-tour.vtt" srcLang="en" label="English" default />
+        Your browser does not support video. <a href="/videos/carbon-tour.mp4">Download the tour</a>.
+      </video>
+      <p>
+        A 44-second narrated tour of the IBM Carbon experience. Product screens use
+        illustrative data; no live agent run is shown. <a href="/videos/carbon-tour-transcript.txt">Read the transcript</a>.
+      </p>
+    </>
+  );
+}
+
 export function ProductTour() {
   const dialog = useRef<HTMLDialogElement>(null);
   const video = useRef<HTMLVideoElement>(null);
@@ -90,34 +114,25 @@ export function ProductTour() {
         data-analytics-event="product_tour_open"
         onClick={() => dialog.current?.showModal()}
       >
-        <Play size={16} /> Watch the product tour <ArrowUpRight size={16} />
+        <Play size={16} /> Watch the Carbon experience tour <ArrowUpRight size={16} />
       </button>
       <dialog
         className="ns-tour-dialog"
-        aria-label="CUGA product tour"
+        aria-label="CUGA Carbon experience tour"
         ref={dialog}
         onClose={() => video.current?.pause()}
       >
         <div className="ns-tour-header">
-          <span>Inside CUGA / Product tour</span>
+          <span>Inside CUGA / IBM Carbon experience</span>
           <button
+            autoFocus
             aria-label="Close product tour"
             onClick={() => dialog.current?.close()}
           >
             <X size={22} />
           </button>
         </div>
-        <video
-          ref={video}
-          controls
-          preload="none"
-          playsInline
-          src="/videos/product-tour.mp4"
-        />
-        <p>
-          Current product UI with illustrative data. This tour does not show a
-          live agent run.
-        </p>
+        <CarbonTourVideo videoRef={video} />
       </dialog>
     </>
   );
