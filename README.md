@@ -118,16 +118,15 @@ node --test scripts/test-analytics.mjs
 
 ## Product media
 
-The product previews show CUGA's IBM Carbon workspace, captured from cuga-agent main at `3991f5a22` on November 1, 2026. Screens use the illustrative Revenue Operations fixture from `cuga-agent/docs/readme/media-fixture.json`; no inference or business operation was executed.
+Product previews use direct captures of CUGA's current interface with illustrative Revenue Operations data from `cuga-agent/docs/readme/media-fixture.json`.
 
-The **Carbon experience tour** reuses the 44-second narrated demo prepared for the Carbon UI refresh. It covers the dashboard, configuration, chat, knowledge, memory, Events Studio, loading states, and mobile layouts. It uses sample data, Kokoro synthesized narration, an English WebVTT caption track, and a text transcript. It does not show a live agent run.
+The product walkthrough is a direct browser recording. It shows agent search, configuration, connected tools, approval policies, chat, knowledge, memory, and Events Studio. No model call or business operation was executed.
 
 | Asset | Purpose |
 | --- | --- |
-| `public/images/{manager,policies,events,memory}.jpg` | Current Carbon product captures, shared with the agent README. |
-| `public/videos/carbon-tour.mp4` | H.264/AAC narrated tour, loaded only when requested. |
-| `public/videos/carbon-tour-poster.png` | Static poster before playback. |
-| `public/videos/carbon-tour.vtt` | Default English captions. |
-| `public/videos/carbon-tour-transcript.txt` | Accessible plain-text narration. |
+| `public/images/{manager,policies,events,memory}.jpg` | Direct product screenshots, shared with the agent README. |
+| `public/videos/product-tour.mp4` | Silent H.264 screen recording of the actual interface. |
+| `public/videos/product-tour.vtt` | English descriptions of the recorded actions. |
+| `public/videos/product-tour.txt` | Text equivalent of the walkthrough. |
 
-Both `/` and `/concept-1` use the same captioned player. Playback requires an explicit user action; closing the dialog pauses playback. Verify both routes at desktop and mobile sizes when replacing media. Keep the caption track, transcript, and poster aligned with the MP4.
+Both `/` and `/concept-1` use the same player and a direct product screenshot as the poster. Playback requires a user action; closing the dialog pauses playback and restores focus to its launcher. Verify both routes at desktop and mobile sizes when replacing media.
