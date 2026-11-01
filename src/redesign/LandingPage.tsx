@@ -405,6 +405,7 @@ const productViews = [
 
 function ProductSection() {
   const [selected, setSelected] = useState(0);
+  const tourTriggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const view = productViews[selected];
@@ -428,6 +429,7 @@ function ProductSection() {
             <button
               className="ns-text-link"
               data-analytics-event="product_tour_open"
+              ref={tourTriggerRef}
               onClick={() => dialogRef.current?.showModal()}
             >
               <span className="ns-play-icon">
@@ -515,7 +517,10 @@ function ProductSection() {
         className="ns-tour-dialog"
         aria-label="CUGA Carbon experience tour"
         ref={dialogRef}
-        onClose={() => videoRef.current?.pause()}
+        onClose={() => {
+          videoRef.current?.pause();
+          tourTriggerRef.current?.focus();
+        }}
       >
         <div className="ns-tour-header">
           <span>Inside CUGA / IBM Carbon experience</span>
