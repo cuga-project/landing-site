@@ -19,6 +19,7 @@ export function Screenshot({
   loading?: "lazy";
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const launcher = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [fullSize, setFullSize] = useState(false);
   useEffect(() => {
@@ -33,6 +34,7 @@ export function Screenshot({
   return (
     <>
       <button
+        ref={launcher}
         className="ns-screenshot-trigger"
         onClick={() => {
           setFullSize(false);
@@ -49,7 +51,10 @@ export function Screenshot({
         ref={dialog}
         className="ns-image-dialog"
         aria-label="Product screenshot"
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+          launcher.current?.focus();
+        }}
       >
         <div className="ns-media-toolbar">
           <span>Product screenshot · sample data</span>
@@ -105,11 +110,13 @@ export function CarbonTourVideo({ videoRef }: { videoRef: RefObject<HTMLVideoEle
 }
 
 export function ProductTour() {
+  const launcher = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   return (
     <>
       <button
+        ref={launcher}
         className="ns-text-link"
         data-analytics-event="product_tour_open"
         onClick={() => dialog.current?.showModal()}
@@ -120,7 +127,10 @@ export function ProductTour() {
         className="ns-tour-dialog"
         aria-label="CUGA Carbon experience tour"
         ref={dialog}
-        onClose={() => video.current?.pause()}
+        onClose={() => {
+          video.current?.pause();
+          launcher.current?.focus();
+        }}
       >
         <div className="ns-tour-header">
           <span>Inside CUGA / IBM Carbon experience</span>
