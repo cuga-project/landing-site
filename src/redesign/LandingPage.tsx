@@ -31,7 +31,7 @@ import {
   Zap,
 } from "lucide-react";
 import "./landing.css";
-import { Screenshot } from "./ProductMedia";
+import { Screenshot, CarbonTourVideo } from "./ProductMedia";
 
 const REPO = "https://github.com/cuga-project/cuga-agent";
 const SOURCE = `${REPO}/blob/main`;
@@ -375,7 +375,7 @@ const productViews = [
     image: "manager",
     title: "From draft to deployed.",
     text: "Connect tools, configure policies, and try your agent beside a draft chat. Publish a version when it is ready.",
-    note: "Current manager UI with illustrative Revenue Operations configuration.",
+    note: "IBM Carbon manager with illustrative Revenue Operations configuration.",
   },
   {
     label: "Execution policies",
@@ -433,7 +433,7 @@ function ProductSection() {
               <span className="ns-play-icon">
                 <Play size={10} fill="currentColor" />
               </span>
-              Watch the product tour <ArrowUpRight size={16} />
+              Watch the Carbon experience tour <ArrowUpRight size={16} />
             </button>
           </div>
         </div>
@@ -513,12 +513,12 @@ function ProductSection() {
       </div>
       <dialog
         className="ns-tour-dialog"
-        aria-label="CUGA product tour"
+        aria-label="CUGA Carbon experience tour"
         ref={dialogRef}
         onClose={() => videoRef.current?.pause()}
       >
         <div className="ns-tour-header">
-          <span>Inside CUGA / Product tour</span>
+          <span>Inside CUGA / IBM Carbon experience</span>
           <button
             aria-label="Close product tour"
             onClick={() => dialogRef.current?.close()}
@@ -526,17 +526,7 @@ function ProductSection() {
             <X size={22} />
           </button>
         </div>
-        <video
-          ref={videoRef}
-          controls
-          preload="none"
-          playsInline
-          src="/videos/product-tour.mp4"
-        />
-        <p>
-          Current product UI with illustrative data. This tour does not show a
-          live agent run.
-        </p>
+        <CarbonTourVideo videoRef={videoRef} />
       </dialog>
     </section>
   );
