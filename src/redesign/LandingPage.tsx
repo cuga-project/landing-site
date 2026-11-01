@@ -375,7 +375,7 @@ const productViews = [
     image: "manager",
     title: "From draft to deployed.",
     text: "Connect tools, configure policies, and try your agent beside a draft chat. Publish a version when it is ready.",
-    note: "IBM Carbon manager with illustrative Revenue Operations configuration.",
+    note: "Current manager UI with illustrative Revenue Operations configuration.",
   },
   {
     label: "Execution policies",
