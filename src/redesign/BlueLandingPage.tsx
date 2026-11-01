@@ -142,7 +142,7 @@ const previewScreens = [
     icon: LayoutGrid,
     title: "Your agent. Ready for work.",
     description:
-      "Connect tools and policies beside a draft chat. Test, then publish.",
+      "Configure tools and policies in the IBM Carbon workspace. Test beside a draft chat, then publish.",
     path: "manage / revenue-ops",
   },
   {
