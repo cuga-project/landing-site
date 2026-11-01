@@ -31,7 +31,7 @@ import {
   Zap,
 } from "lucide-react";
 import "./landing.css";
-import { Screenshot, CarbonTourVideo } from "./ProductMedia";
+import { Screenshot, ProductTourVideo } from "./ProductMedia";
 
 const REPO = "https://github.com/cuga-project/cuga-agent";
 const SOURCE = `${REPO}/blob/main`;
@@ -435,7 +435,7 @@ function ProductSection() {
               <span className="ns-play-icon">
                 <Play size={10} fill="currentColor" />
               </span>
-              Watch the Carbon experience tour <ArrowUpRight size={16} />
+              Watch the product walkthrough <ArrowUpRight size={16} />
             </button>
           </div>
         </div>
@@ -515,7 +515,7 @@ function ProductSection() {
       </div>
       <dialog
         className="ns-tour-dialog"
-        aria-label="CUGA Carbon experience tour"
+        aria-label="CUGA interface walkthrough"
         ref={dialogRef}
         onClose={() => {
           videoRef.current?.pause();
@@ -523,7 +523,7 @@ function ProductSection() {
         }}
       >
         <div className="ns-tour-header">
-          <span>Inside CUGA / IBM Carbon experience</span>
+          <span>Inside CUGA / Product walkthrough</span>
           <button
             aria-label="Close product tour"
             onClick={() => dialogRef.current?.close()}
@@ -531,7 +531,7 @@ function ProductSection() {
             <X size={22} />
           </button>
         </div>
-        <CarbonTourVideo videoRef={videoRef} />
+        <ProductTourVideo videoRef={videoRef} />
       </dialog>
     </section>
   );
