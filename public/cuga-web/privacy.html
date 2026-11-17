@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CUGA Web: Privacy Policy</title>
+<style>
+  body { font: 16px/1.55 system-ui, -apple-system, sans-serif; color: #0f1b3d; max-width: 760px; margin: 40px auto; padding: 0 20px; }
+  h1, h2 { color: #001d6c; } h2 { margin-top: 28px; font-size: 19px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { border: 1px solid #d9e2f0; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #e3f8f8; } code { background: #f2f6fc; padding: 0 4px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>CUGA Web: Privacy Policy</h1>
+<p>Last updated: 2026-11-18</p>
+<p>CUGA Web is a Chrome extension. An AI model that you choose controls browser tabs for you from the side panel. This policy says what data the extension handles, where the data goes, and how you control it.</p>
+<h2>Summary</h2>
+<ul><li>The publisher of CUGA Web does not collect, receive, store, sell or share any of your data. The extension has no server, no analytics, no tracking and no ads.</li><li>During a task, the extension sends page content to the model endpoint that <strong>you</strong> enter in Settings. It sends data to no other place.</li><li>Settings, skills and saved conversations are stored only in your Chrome profile on your computer.</li></ul>
+<h2>Data the extension handles</h2>
+<table><thead><tr><th>Data</th><th>When</th><th>Where it goes</th></tr></thead><tbody><tr><td>Your task text and your answers to questions</td><td>When you send a message</td><td>Your model endpoint</td></tr><tr><td>Page content of the tabs CUGA controls: URL, title, visible text, and a list of interactive elements with their labels and current values</td><td>During a task, after each action</td><td>Your model endpoint</td></tr><tr><td>Screenshots of the visible area of the tabs CUGA controls</td><td>During a task, if screenshots are on in Settings</td><td>Your model endpoint</td></tr><tr><td>Skills you add (<code>SKILL.md</code> text)</td><td>Name and description at the start of each task; the full text when the model loads the skill</td><td>Your model endpoint</td></tr><tr><td>Settings, including the API key of your model endpoint</td><td>When you save Settings</td><td>Stored in your Chrome profile. The API key is sent only to your model endpoint, as the authorization header.</td></tr><tr><td>Conversation history: the last 30 conversations, without screenshots</td><td>After each task, if history is on in Settings</td><td>Stored in your Chrome profile</td></tr><tr><td>Debug log</td><td>Kept in memory while the side panel is open</td><td>Written to a file only when you press <strong>Export log</strong>. The API key and screenshots are not included.</td></tr></tbody></table>
+<p>The extension reads only the tabs it controls for a task. These tabs are in the tab group <strong>CUGA</strong> and show a border with the text "CUGA is controlling this tab". The extension does not read other tabs and does not read pages when no task runs.</p>
+<p>The values of password fields are never read.</p>
+<p>Page content can include personal information that is shown on the page, for example names, messages or account data. Do not use CUGA Web on pages that you do not want to send to your model endpoint.</p>
+<h2>Your model endpoint</h2>
+<p>You enter the address of an OpenAI-compatible endpoint in Settings, for example your own LiteLLM proxy. The provider of that endpoint processes the data under its own terms and privacy policy. The publisher of CUGA Web has no access to that data.</p>
+<h2>Storage and deletion</h2>
+<ul><li>Data is stored with <code>chrome.storage.local</code> in your Chrome profile. It is not synchronized and not encrypted by the extension.</li><li>Delete one conversation or all conversations in the <strong>History</strong> tab. Turn history off in <strong>Settings</strong>.</li><li>Delete skills in the <strong>Skills</strong> tab.</li><li>Removing the extension from Chrome deletes all data it stored.</li></ul>
+<h2>Use of data</h2>
+<p>The extension uses the data only to perform the task you give it. Data is not sold, not used for advertising, not used to determine creditworthiness or for lending, and not transferred to anyone except the model endpoint you configured.</p>
+<p>The use of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
+<h2>Changes</h2>
+<p>If this policy changes, the new version is published at <a href="https://cuga.dev/cuga-web/privacy.html">https://cuga.dev/cuga-web/privacy.html</a> with a new date.</p>
+<h2>Contact</h2>
+<p>Publisher: CUGA Project (cuga-project on GitHub).</p>
+<p>Questions or requests about this policy: open an issue at <a href="https://github.com/cuga-project/cuga-agent/issues">https://github.com/cuga-project/cuga-agent/issues</a> and put "CUGA Web" in the title.</p>
+</body>
+</html>
