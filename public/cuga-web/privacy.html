@@ -15,7 +15,7 @@
 </head>
 <body>
 <h1>CUGA Web: Privacy Policy</h1>
-<p>Last updated: 2026-11-18</p>
+<p>Last updated: 2026-11-23</p>
 <p>CUGA Web is a Chrome extension. An AI model that you choose controls browser tabs for you from the side panel. This policy says what data the extension handles, where the data goes, and how you control it.</p>
 <h2>Summary</h2>
 <ul><li>The publisher of CUGA Web does not collect, receive, store, sell or share any of your data. The extension has no server, no analytics, no tracking and no ads.</li><li>During a task, the extension sends page content to the model endpoint that <strong>you</strong> enter in Settings. It sends data to no other place.</li><li>Settings, skills and saved conversations are stored only in your Chrome profile on your computer.</li></ul>
@@ -23,6 +23,7 @@
 <table><thead><tr><th>Data</th><th>When</th><th>Where it goes</th></tr></thead><tbody><tr><td>Your task text and your answers to questions</td><td>When you send a message</td><td>Your model endpoint</td></tr><tr><td>Page content of the tabs CUGA controls: URL, title, visible text, and a list of interactive elements with their labels and current values</td><td>During a task, after each action</td><td>Your model endpoint</td></tr><tr><td>Screenshots of the visible area of the tabs CUGA controls</td><td>During a task, if screenshots are on in Settings</td><td>Your model endpoint</td></tr><tr><td>Skills you add (<code>SKILL.md</code> text)</td><td>Name and description at the start of each task; the full text when the model loads the skill</td><td>Your model endpoint</td></tr><tr><td>Settings, including the API key of your model endpoint</td><td>When you save Settings</td><td>Stored in your Chrome profile. The API key is sent only to your model endpoint, as the authorization header.</td></tr><tr><td>Conversation history: the last 30 conversations, without screenshots</td><td>After each task, if history is on in Settings</td><td>Stored in your Chrome profile</td></tr><tr><td>Debug log</td><td>Kept in memory while the side panel is open</td><td>Written to a file only when you press <strong>Export log</strong>. The API key and screenshots are not included.</td></tr></tbody></table>
 <p>The extension reads only the tabs it controls for a task. These tabs are in the tab group <strong>CUGA</strong> and show a border with the text "CUGA is controlling this tab". The extension does not read other tabs and does not read pages when no task runs.</p>
 <p>The values of password fields are never read.</p>
+<p>To know when a page is still loading data, the extension counts the page's open network requests (fetch and XMLHttpRequest) in the controlled tab. It counts only: it does not read, change, store or send the requests or their content.</p>
 <p>Page content can include personal information that is shown on the page, for example names, messages or account data. Do not use CUGA Web on pages that you do not want to send to your model endpoint.</p>
 <h2>Your model endpoint</h2>
 <p>You enter the address of an OpenAI-compatible endpoint in Settings, for example your own LiteLLM proxy. The provider of that endpoint processes the data under its own terms and privacy policy. The publisher of CUGA Web has no access to that data.</p>
